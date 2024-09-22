@@ -1,0 +1,191 @@
+Plan
+1 Core Java
+	- OOP Concepts
+		- Classes
+		- Objects
+		- Inheritance
+		- Polymorphism
+		- Abstraction
+		- Encapsulation
+	- Exception Handling
+		- Try-catch blocks
+		- Custom exceptions
+		- Checked vs. unchecked exception
+		- Exception hierarchy
+		- Usage with inheritance
+	- Multithreading
+		- Threads class
+		- Runnable interface
+			- Thread Life Cycle
+		- Synchronization
+			- Synchronization Basics: Ensuring thread safety using synchronized methods and blocks.
+			- Locks and Synchronization:
+				- Intrinsic Locks (Monitor Locks): Synchronizing on objects.
+				- Synchronized Methods: Using the synchronized keyword.
+				- Synchronized Blocks: Controlling access to code blocks with synchronized.
+			- Deadlock: Understanding and preventing deadlock situations (when two or more threads are blocked forever waiting for each other).
+			- Livelock and Starvation: Differences between deadlock, livelock, and starvation.
+		- Concurrency Utilities
+			- Java Concurrency Package: Using java.util.concurrent for advanced thread management.
+			- Executor Framework:
+			- ExecutorService: Managing and controlling thread execution.
+			- Executors: Factory methods to create thread pools (e.g., newFixedThreadPool, newCachedThreadPool).
+			- Callable and Future: Submitting tasks that return results and handling asynchronous computation.
+			- Scheduled Executors: Using ScheduledExecutorService to schedule tasks with fixed-rate or fixed-delay execution.
+		- Concurrent Collections
+			- Java Collections Framework: Using thread-safe collections from java.util.concurrent package.
+			- ConcurrentHashMap: A thread-safe implementation of Map.
+			- CopyOnWriteArrayList and CopyOnWriteArraySet: Collections with thread-safe modifications.
+			- BlockingQueue: Interfaces and implementations like ArrayBlockingQueue, LinkedBlockingQueue, PriorityBlockingQueue.
+		- Thread Communication
+			- Wait and Notify:
+			- wait(): Making a thread wait until it is notified.
+			- notify() and notifyAll(): Waking up threads waiting on an object's monitor.
+			- Condition Variables: Using Condition interface for advanced thread communication.
+		- Thread Safety
+			- Atomic Variables: Using AtomicInteger, AtomicLong, AtomicReference for lock-free thread-safe operations.
+			- Volatile Keyword: Ensuring visibility of changes to variables across threads.
+		- Fork/Join Framework
+			- Introduction: Parallel programming framework designed to take advantage of multi-core processors.
+			- ForkJoinPool: Executing tasks recursively and in parallel.
+			- RecursiveTask and RecursiveAction: Tasks that return results and tasks that don't return results.
+		- ThreadLocal
+			- Purpose: Providing thread-local variables that are isolated from other threads.
+			- Usage: Creating and using ThreadLocal objects for maintaining thread-specific context. 
+	- Memory Management
+		- Java Memory Model (JMM)
+			- Purpose: Defines how threads interact through memory and what behaviors are allowed in concurrent executions.
+			- Memory Visibility: How changes made by one thread become visible to others.
+			- Atomicity: Ensures operations on shared variables are performed as a single unit of work.
+		- Memory Areas
+			- Heap:
+			  - Purpose: Stores objects and their instance variables.
+			  - Generations: Divided into Young Generation (Eden, Survivor Spaces) and Old Generation.
+			  - Garbage Collection: Most GC activities occur in the heap.
+			- Stack:
+			  - Purpose: Stores method frames, local variables, and call stacks.
+			  - Frames: Created for each method invocation and destroyed after the method execution.
+			- Method Area:
+			  - Purpose: Stores class definitions, method information, and static variables.
+			  - Permanent Generation: In older JVM versions (replaced by Metaspace in newer versions).
+			- Native Method Stack:
+			  - Purpose: Stores native method calls and their local variables.
+		- Garbage Collection (GC)
+			- Purpose: Automatically reclaims memory occupied by objects no longer in use.
+			- Garbage Collection Algorithms:
+			  - Mark-and-Sweep: Marks live objects and sweeps away unreachable objects.
+			  - Generational Garbage Collection: Divides heap into generations and performs GC based on object age.
+			  - Tracing GC: Uses mark-and-sweep and/or mark-and-compact techniques.
+			  - Copying GC: Uses two semi-spaces (Eden and Survivor spaces) to copy live objects.
+			- Garbage Collectors:
+			  - Serial GC: Simple GC for single-threaded applications.
+			  - Parallel GC: Uses multiple threads for minor and major GC.
+			  - Concurrent Mark-Sweep (CMS) GC: Minimizes pause times by performing most work concurrently.
+			  - G1 (Garbage-First) GC: Aims to balance throughput and pause times by dividing the heap into regions.
+		- Memory Leaks
+			- Definition: Situations where objects are no longer used but are still referenced, preventing GC.
+			- Causes:
+			  - Unintentional References: Collections or caches holding references to objects.
+			  - Static Fields: Holding references to large objects or collections.
+			  - Inner Classes: Holding implicit references to outer classes.
+			- Detection:
+			  - Profilers: Tools like VisualVM, YourKit, and JProfiler.
+			  - Heap Dumps: Analyzing heap dumps to find excessive or unexpected object retention.
+		- Stack vs. Heap
+			- Heap:
+			  - Usage: For dynamic memory allocation of objects.
+			  - Characteristics: Managed by GC, larger and shared among threads.
+			- Stack:
+			  - Usage: For method calls and local variables.
+			  - Characteristics: Managed by JVM, smaller and thread-local.
+		- Strong vs. Weak References
+			- Strong References: Regular references that prevent objects from being collected.
+			- Soft References: Used for implementing memory-sensitive caches; objects are collected only when memory is low.
+			- Weak References: Objects are collected more eagerly; useful for canonicalizing or maintaining associations.
+			- Phantom References: Used for post-mortem cleanup; provides a way to know when an object has been finalized but before it is reclaimed.
+		- Object Lifecycles
+			- Creation: Allocation of memory for new objects.
+			- Use: Object references and interactions.
+			- Reclamation: When objects are no longer reachable, they become eligible for garbage collection.
+		- Tuning and Optimization
+			- Heap Size Configuration: Setting initial (`-Xms`) and maximum (`-Xmx`) heap sizes.
+			- GC Tuning: Adjusting GC parameters for performance (e.g., `-XX:+UseG1GC`).
+			- Memory Profiling: Analyzing memory usage and optimizing code based on profiling data.
+		- Metaspace (Java 8 and later)
+			- Purpose: Replaces PermGen to store class metadata.
+			- Size Management: Configurable via `-XX:MetaspaceSize` and `-XX:MaxMetaspaceSize`.
+			- Garbage Collection: Managed separately from heap GC.
+		- Java Heap Dumps
+			- Generating Heap Dumps: Using tools like `jmap` or JVM options (`-XX:+HeapDumpOnOutOfMemoryError`).
+			- Analyzing Heap Dumps: Tools like Eclipse MAT or VisualVM to analyze object retention and memory usage.
+
+	- String, StringBuilder, StringBuffer, String immutability
+	- Generics
+	- Collections Framework
+	- Java 8 Features
+		- Lambda Expressions
+		- Functional Interfaces
+		- Streams API
+		- Optional Class
+		- Default Methods in Interfaces
+		- Method References
+		- New Date and Time API
+			- LocalDate: Represents a date without time (e.g., 2024-08-07).
+			- LocalTime: Represents a time without date (e.g., 14:30:00).
+			- LocalDateTime: Combines date and time (e.g., 2024-08-07T14:30:00).
+			- ZonedDateTime: Represents a date and time with time zone.
+			- Duration: Represents a time-based amount of time.
+			- Period: Represents a date-based amount of time.
+	- Serialization and Reflection API
+	
+2. Spring Topics
+	- Core Container: Beans, Dependency Injection (DI), Bean lifecycle, Bean scopes.
+	- Spring Boot: Auto-configuration, Starter dependencies, Actuators, Spring Boot CLI, Microservices support.
+	- Spring MVC: Controllers, ViewResolvers, ModelAndView, Data binding, Form handling.
+	- Spring Data: Repository abstraction, Custom queries, Paging and sorting.
+	- Spring Cloud: Config Server, Eureka Discovery, Zuul/Gateway, Circuit Breaker (Hystrix/Resilience4j).
+3. Spring AOP Topics
+	- Concepts: Aspect, Join Point, Advice, Pointcut, Weaving.
+	- Types of Advice: Before, After, Around, Throws.
+	- AspectJ vs. Spring AOP: Key differences, Use cases.
+	- Annotations: @Aspect, @Before, @After, @Around, @Pointcut.
+4. Spring Security Topics
+	- Authentication and Authorization: User details service, Roles and permissions, Security context.
+	- Security Configuration: WebSecurityConfigurerAdapter, Method Security.
+	- OAuth2 / JWT: Token-based authentication, OAuth2 flows, JWT handling.
+	- Spring Security Features: CSRF protection, CORS, Session management.
+5. Spring Data JPA Topics
+	- Repositories: CRUD operations, Query methods, Custom repository methods.
+	- Entity Mapping: @Entity, @Table, @Id, @Column, @ManyToOne, @OneToMany, @JoinColumn.
+	- JPQL: Query language, Named queries, Native queries.
+	- Criteria API: Building dynamic queries, CriteriaBuilder, CriteriaQuery.
+6. Hibernate Topics
+	- Entity Lifecycle: Transient, Persistent, Detached, Removed.
+	- Mappings: Basic mappings, Associations (One-to-One, One-to-Many, Many-to-One, Many-to-Many).
+	- Caching: First-level cache, Second-level cache.
+	- HQL: Hibernate Query Language, Query examples.
+	- Transaction Management: Session management, Transactions, Isolation levels.
+7. Microservices Topics
+	- Architecture: Service decomposition, Inter-service communication.
+	- Communication: RESTful APIs, gRPC, Message brokers (Kafka, RabbitMQ).
+	- Resilience: Circuit breakers, Retry mechanisms, Rate limiting.
+	- Service Discovery: Eureka, Consul.
+	- API Gateway: Routing, Aggregation, Security.
+	- Configuration Management: Spring Cloud Config, Consul.
+8. CI/CD with Jenkins
+	- Jenkins Basics: Pipelines, Jobs, Build triggers.
+	- Pipeline as Code: Declarative vs. Scripted Pipelines, Jenkinsfile.
+	- Plugins: Common plugins (Maven, Git, Docker).
+	- Build and Deployment: Continuous Integration, Continuous Deployment, Automated tests.
+9. AWS Topics
+	- Core Services: EC2, S3, RDS, Lambda, IAM.
+	- Deployment and Monitoring: CloudFormation, CloudWatch, Elastic Beanstalk.
+	- Networking: VPC, Security Groups, Load Balancers.
+	- Scaling and Management: Auto Scaling, Elastic Load Balancing.
+10. Docker and Containers
+	- Container Basics: Docker vs. Virtual Machines, Containerization.
+	- Docker Commands: Building images, Running containers, Managing containers.
+	- Dockerfile: Creating and optimizing Dockerfiles, Multi-stage builds.
+	- Docker Compose: Defining and running multi-container applications.
+	- Container Orchestration: Basics of Kubernetes, Pod management, Service discovery.
+	- Image Management: Docker Hub, Private registries, Image versioning and tagging
